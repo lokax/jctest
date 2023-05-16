@@ -1,7 +1,7 @@
 #include <unordered_map>
 #include <vector>
 
-#define TABLE_NUM = 10;
+#define TABLE_NUM = 10
 
 struct JoinNode {
     JoinNode* left;
