@@ -47,8 +47,8 @@ int main()
             // 查找由j张表形成的所有子集
             std::vector<RelationSet> left_sets = FindAllSubSet(j);
             std::vector<RelationSet> right_sets = FindAllSubSet(k);
-            for (size_t left_set_idx = 0; left_sets.size(); ++left_set_idx) {
-                for (size_t right_set_idx = 0; right_sets.size(); ++right_set_idx) {
+            for (size_t left_set_idx = 0; left_set_idx < left_sets.size(); ++left_set_idx) {
+                for (size_t right_set_idx = 0; right_set_idx < right_sets.size(); ++right_set_idx) {
                     JoinNode* left_best_plan = dp_table[left_sets[left_set_idx]];
                     JoinNode* right_best_plan = dp_table[right_sets[right_set_idx]];
 
@@ -84,7 +84,7 @@ int main()
         for (size_t i = 0; i < join_nodes.size(); ++i) {
             for (size_t j = i + 1; j < join_nodes.size(); ++j) {
                 size_t new_join_node_cost = Cost(join_nodes[i], join_nodes[j]);
-                if (new_join_node_cost < best_plan->cost) {
+                if (best_plan == nullptr || new_join_node_cost < best_plan->cost) {
                     best_plan = new JoinNode(join_nodes[i], join_nodes[j], new_join_node_cost);
                     left_idx = i;
                     right_idx = j;
